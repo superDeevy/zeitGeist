@@ -1,3 +1,7 @@
+First of all, mad props to austin griffith for creating scaffold-eth! Its so much fun!!!
+
+For now, our main branch is "main", so check out that to see what we are up to!
+
 # 🏗 scaffold-eth
 
 > is everything you need to get started building decentralized applications powered by Ethereum
