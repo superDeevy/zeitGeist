@@ -14,7 +14,7 @@ contract YourContract {
   event NewActivityReady(address player, uint a_id, string description);
   event ActivityLive(address player, address witness, uint a_id);
   event ActivityCompleted(address player, uint a_id);
-  event NewMemoryMinted(address owner, uint tokenId, string metadata);
+  event NewMemoryMinted(uint a_id, address owner, address witness, uint tokenId, string metadata);
 
   uint next_a_id = 0;
   struct Activity {
@@ -32,11 +32,6 @@ contract YourContract {
     // TODO link to NFT-Token
     collectible = _collectible;
     // TODO link to CommunityMemberRegistry
-  }
-
-  function mintToken() public {
-    uint newTokenId = YourCollectible(collectible).mintItem(msg.sender, "test");
-    emit NewMemoryMinted(msg.sender, newTokenId, "sdfsf");
   }
 
   function createActivity(
@@ -65,13 +60,22 @@ contract YourContract {
     emit ActivityLive(a.player, msg.sender, a_id);
   }
 
-  function markCompleted( uint a_id) public {
+  function markCompleted( uint a_id, string memory _memory) public {
+    // require(activities[a_id], "invalid memory id ");
     Activity storage a = activities[a_id];
     // require(msg.sender == a.witness, "Only witness can mark as completed");
     a.status = AStatus.COMPLETED;
     emit ActivityCompleted(a.player, a_id);
+    mintToken(a_id, a.player, _memory);
     // TODO
     // mint token with metadata from parameter
   }
+  function mintToken(uint a_id, address _owner,string memory _memory ) internal {
+    uint newTokenId = YourCollectible(collectible).mintItem(_owner, _memory);
+    emit NewMemoryMinted(a_id, _owner, msg.sender, newTokenId, _memory);
+    console.log(newTokenId);
+  }
+
+
 
 }

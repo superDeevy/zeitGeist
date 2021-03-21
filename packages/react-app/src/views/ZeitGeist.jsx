@@ -11,8 +11,11 @@ import Logo from './logo.png';
 import LogoAndLetters from './logo_mit.png';
 import LogoPure from './logoOhne.png';
 
-export default function ZeitGeist({address, setNewActivityEvent, setActivityLiveEvent,tx, setActivityCompletedEvent, readContracts, writeContracts, localProvider, userProvider}) {
+export default function ZeitGeist({
+  address, setNewActivityEvent, setActivityLiveEvent,tx, setActivityCompletedEvent, readContracts, writeContracts, localProvider, userProvider, setMemoryMinted
+}) {
 
+  // get recent activities
   let new_activities = setNewActivityEvent.map((x) => {return {a_id: x.a_id.toString(), player: x.player, description: x.description, status: "ready"}})
   let live_activities = setActivityLiveEvent.map((x) => {return {a_id: x.a_id.toString(), player: x.player, witness: x.witness}})
   let completed_activities = setActivityCompletedEvent.map((x) => {return {a_id: x.a_id.toString(), player: x.player, witness: x.witness}})
@@ -42,8 +45,17 @@ export default function ZeitGeist({address, setNewActivityEvent, setActivityLive
       status : "completed",
     }
   }
+  // filter out those that are completed by you -> your memories
+  let all_memories = setMemoryMinted.map((x) => {return {owner: x.owner, a_id: x.a_id.toString(), tokenId: x.tokenId, memory: x.metadata, witness: x.witness}})
+  const memories = {
+    asPlayer: all_memories.filter(x => x.owner === address),
+    asWitness: all_memories.filter(x => x.witness === address)
+  }
 
-  console.log('all', as)
+
+  console.log('all', all_memories)
+  console.log('sorted', memories)
+  console.log('address', address)
 
   const activities = {
     ready: Object.values(as).filter(x => x.status == "ready"),
@@ -97,8 +109,6 @@ export default function ZeitGeist({address, setNewActivityEvent, setActivityLive
 }
 
 // TODO
-// - add nft
-// - mint nft with hash
 // - adjust metadata to match nft standard
 // - display memoryLane component
 // - pull all memories from 

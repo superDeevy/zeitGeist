@@ -75,7 +75,7 @@ export default function MintMemoryDrawer ({
               <Button onClick={onClose} style={{ marginRight: 8 }}>
                 Back
               </Button>
-              <Button disabled={ipfsHash ? false : true} onClick={() => markAsCompleted(a_id)} type="primary">
+              <Button disabled={ipfsHash ? false : true} onClick={() => markAsCompleted(a_id, ipfsHash)} type="primary">
                 Mint Token
               </Button>
             </div>

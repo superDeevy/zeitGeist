@@ -84,8 +84,20 @@
     "inputs": [
       {
         "indexed": false,
+        "internalType": "uint256",
+        "name": "a_id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
         "internalType": "address",
         "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "witness",
         "type": "address"
       },
       {
@@ -202,16 +214,14 @@
         "internalType": "uint256",
         "name": "a_id",
         "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_memory",
+        "type": "string"
       }
     ],
     "name": "markCompleted",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "mintToken",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

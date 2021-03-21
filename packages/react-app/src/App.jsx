@@ -160,6 +160,7 @@ function App(props) {
   const setNewActivityEvent = useEventListener(readContracts, "YourContract", "NewActivityReady", localProvider, 1);
   const setActivityLiveEvent = useEventListener(readContracts, "YourContract", "ActivityLive", localProvider, 1);
   const setActivityCompletedEvent = useEventListener(readContracts, "YourContract", "ActivityCompleted", localProvider, 1);
+  const setMemoryMinted = useEventListener(readContracts, "YourContract", "NewMemoryMinted", localProvider, 1);
   // console.log("📟 New Activity events:", setNewActivityEvent)
   // console.log("📟 New Activity events:", setActivityLiveEvent)
   // console.log("📟 New Activity events:", setActivityCompletedEvent)
@@ -333,6 +334,7 @@ function App(props) {
               setNewActivityEvent={setNewActivityEvent}
               setActivityLiveEvent={setActivityLiveEvent}
               setActivityCompletedEvent={setActivityCompletedEvent}
+              setMemoryMinted={setMemoryMinted}
               userProvider={userProvider}
               localProvider={localProvider}
               writeContracts={writeContracts}
