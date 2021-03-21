@@ -27,8 +27,14 @@ export default function MemoryLane({
     let memoryLane = memories.asPlayer.map((a) => 
         <div> 
             <Card>
-                Date
-                 {a.ipfsHash} 
+                <div>
+                    <p>
+                        Preview of: {a.ipfsHash} 
+                    </p>
+                    <p>
+                        {/* {a.data} */}
+                    </p>
+                </div>
             </Card>
         </div>
         )

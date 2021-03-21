@@ -43,7 +43,6 @@ export default function ZeitGeist({
   let live_ids_only = new_activities.map(x => x.a_id)
   let as = {}
   for (var a of new_activities) {
-    console.log('looking at', a)
     if (!(a.a_id in as)) {
       as[a.a_id] = a
     } else {
@@ -69,7 +68,8 @@ export default function ZeitGeist({
   // filter out those that are completed by you -> your memories
   let all_memories = setMemoryMinted.map((x) => {
     return {
-      owner: x.owner, a_id: x.a_id.toString(), tokenId: x.tokenId, ipfsHash: x.metadata, witness: x.witness
+      owner: x.owner, a_id: x.a_id.toString(), tokenId: x.tokenId, ipfsHash: x.metadata, witness: x.witness,
+      data: x
     }})
 
   const memories = {
