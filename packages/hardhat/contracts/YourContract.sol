@@ -3,6 +3,8 @@ pragma solidity >=0.6.0 <0.9.0;
 
 import "hardhat/console.sol";
 //import "@openzeppelin/contracts/access/Ownable.sol"; //https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol
+import "./YourCollectible.sol";
+// "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract YourContract {
   // TODO rename to ActivityRegistry
@@ -12,6 +14,7 @@ contract YourContract {
   event NewActivityReady(address player, uint a_id, string description);
   event ActivityLive(address player, address witness, uint a_id);
   event ActivityCompleted(address player, uint a_id);
+  event NewMemoryMinted(address owner, uint tokenId, string metadata);
 
   uint next_a_id = 0;
   struct Activity {
@@ -20,13 +23,20 @@ contract YourContract {
     address player;
     address witness;
   }
+  address public collectible;
 
   mapping (uint => Activity) public activities;
 
-  constructor() {
+  constructor(address _collectible) public {
     // what should we do on deploy?
     // TODO link to NFT-Token
+    collectible = _collectible;
     // TODO link to CommunityMemberRegistry
+  }
+
+  function mintToken() public {
+    uint newTokenId = YourCollectible(collectible).mintItem(msg.sender, "test");
+    emit NewMemoryMinted(msg.sender, newTokenId, "sdfsf");
   }
 
   function createActivity(
