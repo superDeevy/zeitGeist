@@ -12,8 +12,8 @@ export default function MemCard({
   const [isModalVisible, setIsModalVisible] = useState(false);
   const name = activity.description
   const isWitness = activity.witness && activity.witness === address ? true : false
-  console.log('memcard', activity.description, activity.witness)
-  console.log('amwitnes', isWitness)
+  // console.log('memcard', activity.description, activity.witness)
+  // console.log('amwitnes', isWitness)
 
   const showModal = () => {
     setIsModalVisible(true);

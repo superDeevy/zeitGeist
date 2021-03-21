@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, Carousel, Divider, Tabs } from "antd";
 import MemCardList from "./MemCardList"
 import StartMemory from "./StartMemory"
+import MemoryLane from "./MemoryLane";
 
 function onChange(a, b, c) {
     console.log(a, b, c);
@@ -9,7 +10,7 @@ function onChange(a, b, c) {
 const { TabPane } = Tabs;
 
 export default function Main({
-  address, as, readContracts, writeContracts, localProvider, userProvider, tx
+  address, as, readContracts, writeContracts, localProvider, userProvider, tx, memories
 }) {
   const [activeTab, setActiveTab] = useState("1")
   return (
@@ -46,9 +47,21 @@ export default function Main({
       tx={tx}
       userProvider={userProvider}
       localProvider={localProvider}
-      afterMinted={() => setActiveTab("2")}
+      afterMinted={() => setActiveTab("4")}
       /> 
     </TabPane>
+    <TabPane tab="Minted" key="4">
+      <MemoryLane 
+      memories={memories}
+      // as={as.live} address={address} 
+      // writeContracts={writeContracts}
+      // tx={tx}
+      // userProvider={userProvider}
+      // localProvider={localProvider}
+      // afterMinted={() => setActiveTab("2")}
+      /> 
+    </TabPane>
+
   </Tabs>
   </div>
   );

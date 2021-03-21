@@ -25,8 +25,8 @@ export default function MemCardList({
     afterWitnessed()
   }
 
-  const markAsCompleted = (a_id) => {
-    tx( writeContracts.YourContract.markCompleted(parseInt(a_id)) )
+  const markAsCompleted = (a_id, memoryHash) => {
+    tx( writeContracts.YourContract.markCompleted(parseInt(a_id), memoryHash) )
     afterMinted()
   }
 
