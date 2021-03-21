@@ -60,21 +60,17 @@ export default function MemoryLane({
   let demoLane = [
     <Card>
     <div >
-        <p>
-        tokenId: 1
-        description: "so much fun!"
-        witness: matze.eth
-        </p>
+        <p>tokenId: 1</p>
+        <p>description: "so much fun!"</p>
+        <p>witness: matze.eth</p>
       <img src={Demo1} width={300}/>
     </div>
       </Card>,
     <Card>
     <div >
-        <p>
-        tokenId: 2
-        description: "I thought so too"
-        witness: djuju.eth
-        </p>
+        <p>tokenId: 2</p>
+        <p>description: "I thought so too"</p>
+        <p>witness: djuju.eth</p>
       <img src={Demo3} width={300}/>
     </div>
       </Card>,
@@ -94,17 +90,16 @@ export default function MemoryLane({
         <div> 
             <Card>
                 <div>
-                    <p>
-                        Preview of: {a.ipfsHash} 
-                    </p>
-                    <p>
-                        {/* {a.data} */}
-                    </p>
+                        {/* <p>tokenId: {a.tokenId}</p> */}
+                        {/* <p>description: {a.description}</p> */}
+                        {/* <p>witness: {a.witness}</p> */}
+                        <p> Preview of: ipfs:// {a.ipfsHash} </p>
                 </div>
             </Card>
         </div>
         )
   memoryLane = demoLane.concat(memoryLane)
+  console.log(memories.asPlayer)
 
     return (<div>
         <Carousel autoplay>
